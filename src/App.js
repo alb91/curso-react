@@ -1,18 +1,21 @@
-import Footer from "./Components/Footer/Footer.jsx";
-import ItemListContainer from "./Components/ItemListContainer/ItemListContainer.jsx";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ItemDetailContainer from "./Components/Catalog/ItemDetailContainer.jsx";
+import ItemListContainer from "./Components/Catalog/ItemListContainer.jsx";
 import Navbar from "./Components/Navbar/Navbar.jsx";
-import ProductCard from "./Components/Navbar/ProductCard.jsx";
 
 function App() {
   return (
-    <div className="App">
+    <BrowserRouter>
       <Navbar />
-      <ItemListContainer greeting="Bienvenido" />
-      <ProductCard title="Producto 2" price={200} isRed={false} />
-      <ProductCard title="Producto 3" price={200} isRed={true} />
 
-      <Footer />
-    </div>
+      <Routes>
+        <Route path="/" element={<ItemListContainer />} />
+        <Route path="/category/:categoryName" element={<ItemListContainer />} />
+        <Route path="/itemDetail/:id" element={<ItemDetailContainer />} />
+
+        <Route path="*" element={<h1> error 404: Not found </h1>} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
